@@ -77,8 +77,8 @@ void Render::render() {
 
 
     uint8_t pwm = map(
-            max(0, min(0x3FF, (int16_t) getLightStrength() + ((int8_t) ConfigManager::shiftLightBrightness) * 2)),
-            0, 0x3FF, ConfigManager::maxLightBrightness, ConfigManager::minLightBrightness);
+            0x3FF - max(0, min(0x3FF, (int16_t) getLightStrength() + ((int8_t) ConfigManager::shiftLightBrightness) * 2)),
+            0, 0x3FF, ConfigManager::minLightBrightness, ConfigManager::maxLightBrightness);
 
     analogWrite(PIN_DISPLAY_BRIGHTNESS_PWM, pwm);
 
